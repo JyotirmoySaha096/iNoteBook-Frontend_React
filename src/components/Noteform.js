@@ -1,46 +1,73 @@
-import React from "react";
+import React,{useState, useContext} from "react";
+import noteContext from "../contexts/noteContext";
 
 const Noteform = () => {
+  const {AddNote} = useContext(noteContext);
+  const [newNote, setNewNote] = useState({title: "", description: "", tag: ""})
+  const handleOnChange = (e)=>{
+    // console.log({[e.target.name] : e.target.value});
+    setNewNote(prev=>{
+      return ({...prev,[e.target.name] : e.target.value})
+    });
+  }
+
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    // console.log("I am clicked.");
+    AddNote(newNote);
+    setNewNote({title: "", description: "", tag: ""});
+  };
+
   return (
     <>
       <form>
         <div>
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
-              Email address
+            <label htmlFor="exampleInputText1" className="form-label">
+              Title
             </label>
             <input
-              type="email"
+              type="text"
               className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
+              id="exampleInputTitle1"
+              aria-describedby="title"
+              name="title"
+              onChange={handleOnChange}
+              value={newNote.title}
             />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
+            <label htmlFor="exampleInputText1" className="form-label">
+              Description
             </label>
             <input
-              type="password"
+              type="text"
               className="form-control"
-              id="exampleInputPassword1"
+              id="exampleInputDescription1"
+              name="description"
+              onChange={handleOnChange}
+              value={newNote.description}
             />
           </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Check me out
+          <div className="mb-3">
+            <label htmlFor="exampleInputText1" className="form-label">
+              Tag
             </label>
+            <input
+              type="text"
+              className="form-control"
+              id="exampleInputTag1"
+              name="tag"
+              onChange={handleOnChange}
+              value={newNote.tag}
+            />
           </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={handleOnClick}
+          >
+            Add Note
           </button>
         </div>
       </form>
