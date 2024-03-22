@@ -1,5 +1,5 @@
 import React,{useState, useContext} from "react";
-import noteContext from "../contexts/noteContext";
+import noteContext from "../contexts/NoteContext";
 
 const Noteform = () => {
   const {AddNote} = useContext(noteContext);
@@ -34,6 +34,7 @@ const Noteform = () => {
               name="title"
               onChange={handleOnChange}
               value={newNote.title}
+              minLength={3}
             />
           </div>
           <div className="mb-3">
@@ -47,6 +48,7 @@ const Noteform = () => {
               name="description"
               onChange={handleOnChange}
               value={newNote.description}
+              minLength={4}
             />
           </div>
           <div className="mb-3">
@@ -66,6 +68,7 @@ const Noteform = () => {
             type="submit"
             className="btn btn-primary"
             onClick={handleOnClick}
+            disabled = {(newNote.title.length<3) || (newNote.description.length<4) ? true : false}
           >
             Add Note
           </button>

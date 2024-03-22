@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import noteContext from "../contexts/noteContext";
+import noteContext from "../contexts/NoteContext";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Card from "react-bootstrap/Card";
@@ -11,7 +11,7 @@ const NoteItem = ({ id, title, description, tag, date }) => {
   const { DeleteNote, EditNote } = useContext(noteContext);
   const [show, setShow] = useState(false);
   const [editedNote, setEditedNote] = useState({
-    etitle: tag,
+    etitle: title,
     edescription: description,
     etag: tag,
   });
@@ -96,6 +96,7 @@ const NoteItem = ({ id, title, description, tag, date }) => {
               handleClose();
               // setEditedNote({ etitle: "", edescription: "", etag: "" });
             }}
+            disabled={editedNote.etitle.length<3 || editedNote.edescription.length<4 ? true : false} 
           >
             Update Note
           </Button>
