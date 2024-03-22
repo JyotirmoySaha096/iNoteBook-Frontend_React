@@ -15,7 +15,7 @@ const NoteState = ({ children }) => {
           localStorage.getItem("userToken"),
       },
     };
-    fetch("http://localhost:3001/api/notes/fetchallnotes", requestOptions)
+    fetch("https://mtnh7m-3001.csb.app/api/notes/fetchallnotes", requestOptions)
       .then((response) => response.json())
       .then((data) => setNotes(data));
   };
@@ -33,7 +33,7 @@ const NoteState = ({ children }) => {
       },
       body: JSON.stringify(newNote),
     };
-    await fetch("http://localhost:3001/api/notes/addnewnote", requestOptions);
+    await fetch("https://mtnh7m-3001.csb.app/api/notes/addnewnote", requestOptions);
     await fetchNotes();
   };
 
@@ -52,7 +52,7 @@ const NoteState = ({ children }) => {
         tag: tag,
       }),
     };
-    fetch(`http://localhost:3001/api/notes/updatenote/${id}`, requestOptions);
+    fetch(`https://mtnh7m-3001.csb.app/api/notes/updatenote/${id}`, requestOptions);
     setNotes((prevNotes) => {
       return prevNotes.map((prevNote) => {
         if (prevNote._id === id) {
@@ -74,7 +74,7 @@ const NoteState = ({ children }) => {
           localStorage.getItem("userToken"),
       },
     };
-    fetch(`http://localhost:3001/api/notes//deletenote/${id}`, requestOptions);
+    fetch(`https://mtnh7m-3001.csb.app/api/notes//deletenote/${id}`, requestOptions);
     setNotes((prevNotes) => {
       return prevNotes.filter((prevNote) => prevNote._id !== id);
     });

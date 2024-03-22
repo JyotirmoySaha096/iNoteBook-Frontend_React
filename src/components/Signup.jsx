@@ -30,7 +30,7 @@ function Signup() {
           password: userInfo.password,
         }),
       };
-      let res = await fetch('http://localhost:3001/api/auth/createuser', requestOptions);
+      let res = await fetch('https://mtnh7m-3001.csb.app/api/auth/createuser', requestOptions);
       let data = await res.json();
       // console.log(data);
       if(data.success){

@@ -21,7 +21,7 @@ function Login() {
       body: JSON.stringify(userInfo),
     };
     let res = await fetch(
-      "http://localhost:3001/api/auth/login",
+      "https://mtnh7m-3001.csb.app/api/auth/login",
       requestOptions
     );
     let data = await res.json();
